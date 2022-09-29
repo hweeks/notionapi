@@ -207,7 +207,7 @@ func (p *Page) IsRoot(block *Block) bool {
 		return false
 	}
 	// a block can be a link to its parent, causing infinite loop
-	// https://github.com/kjk/notionapi/issues/21
+	// https://github.com/hweeks/notionapi/issues/21
 	// TODO: why block.ID == block.ParentID doesn't work?
 	if block == block.Parent {
 		return false

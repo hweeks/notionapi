@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/kjk/notionapi"
+	"github.com/hweeks/notionapi"
 )
 
 func maybePanic(format string, args ...interface{}) {

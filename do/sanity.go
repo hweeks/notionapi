@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/kjk/notionapi"
+	"github.com/hweeks/notionapi"
 )
 
 // https://www.notion.so/Comparing-prices-of-VPS-servers-c30393989ae549c3a39f21ca5a681d72

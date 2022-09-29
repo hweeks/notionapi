@@ -8,9 +8,9 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/hweeks/notionapi"
+	"github.com/hweeks/notionapi/tohtml"
 	"github.com/kjk/fmthtml"
-	"github.com/kjk/notionapi"
-	"github.com/kjk/notionapi/tohtml"
 	"github.com/kjk/u"
 )
 

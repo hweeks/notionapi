@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/kjk/notionapi"
+	"github.com/hweeks/notionapi"
 )
 
 func maybePanic(format string, args ...interface{}) {
@@ -1228,6 +1228,21 @@ func (c *Converter) RenderEmbed(block *notionapi.Block) {
 	c.Printf(`</figure>`)
 }
 
+// RenderTable renders BlockTable
+func (c *Converter) RenderTable(block *notionapi.Block) {
+	c.Printf(`<div id="%s">`, block.ID)
+	{
+		c.Printf(`<div class="source">`)
+		{
+			uri := getFileOrSourceURL(block)
+			text := block.Source
+			c.A(uri, text, "")
+		}
+		c.Printf(`</div>`)
+	}
+	c.Printf(`</div>`)
+}
+
 // RenderTweet renders BlockTweet
 func (c *Converter) RenderTweet(block *notionapi.Block) {
 	c.renderEmbed(block)
@@ -1773,6 +1788,8 @@ func (c *Converter) DefaultRenderFunc(blockType string) func(*notionapi.Block) {
 		return c.RenderAlias
 	case notionapi.BlockTransclusionReference:
 		return c.RenderTransclusionReference
+	case notionapi.BlockTable:
+		return c.RenderTable
 	case notionapi.BlockFactory:
 		return nil
 	case notionapi.BlockLinkToPage:

@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/kjk/notionapi"
-	"github.com/kjk/notionapi/tomarkdown"
+	"github.com/hweeks/notionapi"
+	"github.com/hweeks/notionapi/tomarkdown"
 	"github.com/kjk/u"
 )
 

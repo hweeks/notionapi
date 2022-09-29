@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/kjk/notionapi"
+	"github.com/hweeks/notionapi"
 	"github.com/kjk/u"
 )
 

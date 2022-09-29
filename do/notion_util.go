@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/kjk/notionapi"
+	"github.com/hweeks/notionapi"
 )
 
 var (

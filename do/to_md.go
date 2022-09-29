@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/kjk/notionapi"
-	"github.com/kjk/notionapi/tomarkdown"
+	"github.com/hweeks/notionapi"
+	"github.com/hweeks/notionapi/tomarkdown"
 )
 
 func mdPath(pageID string, n int) string {

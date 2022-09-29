@@ -11,7 +11,7 @@ Note: official Notion API is still in beta and not as capable as this unofficial
 Documentation:
 
 - tutorial: https://blog.kowalczyk.info/article/c9df78cbeaae4e0cb2848c9964bcfc94/using-notion-api-go-client.html
-- API docs: https://pkg.go.dev/github.com/kjk/notionapi
+- API docs: https://pkg.go.dev/github.com/hweeks/notionapi
 
 You can learn how [I reverse-engineered the Notion API](https://blog.kowalczyk.info/article/88aee8f43620471aa9dbcad28368174c/how-i-reverse-engineered-notion-api.html) in order to write this library.
 

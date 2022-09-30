@@ -1246,10 +1246,10 @@ func (c *Converter) RenderTableRow(block *notionapi.Block) {
 		case reflect.Array:
 			s := reflect.ValueOf(value)
 			for i := 0; i < s.Len(); i++ {
-				c.Printf(`<div id="%s" class="table-row-content">%v</div>`, key, value)
+				c.Printf(`<div id="%s" class="table-row-content">%s</div>`, key, s.Bytes())
 			}
 		default:
-			c.Printf(`<div id="%s" class="table-row-content">%v</div>`, key, value)
+			c.Printf(`<div id="%s" class="table-row-content">%s</div>`, key, value)
 		}
 	}
 	c.Printf(`</div>`)

@@ -1239,17 +1239,13 @@ func (c *Converter) RenderTable(block *notionapi.Block) {
 // RenderTableRow renders BlockTable
 func (c *Converter) RenderTableRow(block *notionapi.Block) {
 	c.Printf(`<div id="%s" class="table-row">`, block.ID)
-	for key := range block.Properties {
-		value := block.Properties[key]
-		s := reflect.ValueOf(value)
-		iter := s.MapRange()
-		for iter.Next() {
-			k := iter.Key()
-			v := iter.Value()
-			c.Printf(`<div id="%s-key" class="table-row-content">%s</div><div id="%s-value" class="table-row-content">%s</div>`, k, k, v, v)
-		}
+	s := reflect.ValueOf(block.Properties)
+	iter := s.MapRange()
+	for iter.Next() {
+		k := iter.Key()
+		v := iter.Value()
+		c.Printf(`<div id="%s-key" class="table-row-content">%s</div><div id="%s-value" class="table-row-content">%s</div>`, k, k, v, v)
 	}
-	c.Printf(`<div id="%s" class="table-row-content">%+v</div>`, block.ID+"lol", block.Properties)
 	c.Printf(`</div>`)
 }
 

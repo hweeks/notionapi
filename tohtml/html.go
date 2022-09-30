@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"reflect"
 	"strconv"
 	"strings"
 
@@ -1239,7 +1240,15 @@ func (c *Converter) RenderTable(block *notionapi.Block) {
 func (c *Converter) RenderTableRow(block *notionapi.Block) {
 	c.Printf(`<div id="%s" class="table-row">`, block.ID)
 	for key, value := range block.Properties {
-		c.Printf(`<div id="%s" class="table-row-content">%s</div>`, key, value)
+		rt := reflect.TypeOf(value)
+		switch rt.Kind() {
+		case reflect.Slice:
+		case reflect.Array:
+			s := reflect.ValueOf(value)
+			for i := 0; i < s.Len(); i++ {
+				c.Printf(`<div id="%s" class="table-row-content">%s</div>`, key, s.Index(i))
+			}
+		}
 	}
 	c.RenderChildren(block)
 	c.Printf(`</div>`)

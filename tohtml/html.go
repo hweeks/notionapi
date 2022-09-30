@@ -1235,6 +1235,16 @@ func (c *Converter) RenderTable(block *notionapi.Block) {
 	c.Printf(`</div>`)
 }
 
+// RenderTableRow renders BlockTable
+func (c *Converter) RenderTableRow(block *notionapi.Block) {
+	c.Printf(`<div id="%s" class="table-row">`, block.ID)
+	for key, value := range block.Properties {
+		c.Printf(`<div id="%s" class="table-row-content">%s</div>`, key, value)
+	}
+	c.RenderChildren(block)
+	c.Printf(`</div>`)
+}
+
 // RenderTweet renders BlockTweet
 func (c *Converter) RenderTweet(block *notionapi.Block) {
 	c.renderEmbed(block)
@@ -1782,6 +1792,8 @@ func (c *Converter) DefaultRenderFunc(blockType string) func(*notionapi.Block) {
 		return c.RenderTransclusionReference
 	case notionapi.BlockTable:
 		return c.RenderTable
+	case notionapi.BlockTableRow:
+		return c.RenderTableRow
 	case notionapi.BlockFactory:
 		return nil
 	case notionapi.BlockLinkToPage:

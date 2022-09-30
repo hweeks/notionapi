@@ -71,8 +71,10 @@ const (
 	BlockTableOfContents = "table_of_contents"
 	// BlockText is a text block
 	BlockText = "text"
-	// BlockTable is a text block
+	// BlockTable is a table
 	BlockTable = "table"
+	// BlockTableRow is a table row
+	BlockTableRow = "table_row"
 	// BlockTodo is a todo block
 	BlockTodo = "to_do"
 	// BlockToggle is a toggle block

@@ -1252,6 +1252,7 @@ func (c *Converter) RenderTableRow(block *notionapi.Block) {
 			c.Printf(`<div id="%s" class="table-row-content">%s</div>`, key, value)
 		}
 	}
+	c.Printf(`<div id="%s" class="table-row-content">%+v</div>`, block.ID+"lol", block.Properties)
 	c.Printf(`</div>`)
 }
 

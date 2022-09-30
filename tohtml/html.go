@@ -1239,25 +1239,14 @@ func (c *Converter) RenderTable(block *notionapi.Block) {
 // RenderTableRow renders BlockTable
 func (c *Converter) RenderTableRow(block *notionapi.Block) {
 	c.Printf(`<div id="%s" class="table-row">`, block.ID)
-	for key, value := range block.Properties {
-		rt := reflect.TypeOf(value)
-		switch rt.Kind() {
-		case reflect.Slice:
-		case reflect.Array:
-			s := reflect.ValueOf(value)
-			for i := 0; i < s.Len(); i++ {
-				c.Printf(`<div id="%s" class="table-row-content">%s</div>`, key, s.Bytes())
-			}
-		case reflect.Map:
-			s := reflect.ValueOf(value)
-			iter := s.MapRange()
-			for iter.Next() {
-				k := iter.Key()
-				v := iter.Value()
-				c.Printf(`<div id="%s-key" class="table-row-content">%s</div><div id="%s-value" class="table-row-content">%s</div>`, k, k, v, v)
-			}
-		default:
-			c.Printf(`<div id="%s" class="table-row-content">%s</div>`, key, value)
+	for key := range block.Properties {
+		value := block.Properties[key]
+		s := reflect.ValueOf(value)
+		iter := s.MapRange()
+		for iter.Next() {
+			k := iter.Key()
+			v := iter.Value()
+			c.Printf(`<div id="%s-key" class="table-row-content">%s</div><div id="%s-value" class="table-row-content">%s</div>`, k, k, v, v)
 		}
 	}
 	c.Printf(`<div id="%s" class="table-row-content">%+v</div>`, block.ID+"lol", block.Properties)

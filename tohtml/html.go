@@ -1248,6 +1248,14 @@ func (c *Converter) RenderTableRow(block *notionapi.Block) {
 			for i := 0; i < s.Len(); i++ {
 				c.Printf(`<div id="%s" class="table-row-content">%s</div>`, key, s.Bytes())
 			}
+		case reflect.Map:
+			s := reflect.ValueOf(value)
+			iter := s.MapRange()
+			for iter.Next() {
+				k := iter.Key()
+				v := iter.Value()
+				c.Printf(`<div id="%s-key" class="table-row-content">%s</div><div id="%s-value" class="table-row-content">%s</div>`, k, k, v, v)
+			}
 		default:
 			c.Printf(`<div id="%s" class="table-row-content">%s</div>`, key, value)
 		}

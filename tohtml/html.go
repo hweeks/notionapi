@@ -1248,6 +1248,8 @@ func (c *Converter) RenderTableRow(block *notionapi.Block) {
 			for i := 0; i < s.Len(); i++ {
 				c.Printf(`<div id="%s" class="table-row-content">%s</div>`, key, s.Index(i))
 			}
+		default:
+			c.Printf(`<div id="%s" class="table-row-content">%v</div>`, rt.Kind(), value)
 		}
 	}
 	c.RenderChildren(block)

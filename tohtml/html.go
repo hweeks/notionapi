@@ -1249,7 +1249,7 @@ func (c *Converter) RenderTableRow(block *notionapi.Block) {
 				c.Printf(`<div id="%s" class="table-row-content">%v</div>`, key, s)
 			}
 		default:
-			c.RenderChildren(block)
+			c.Printf(`<div id="%s" class="table-row-content">%v</div>`, key, value)
 		}
 	}
 	c.Printf(`</div>`)

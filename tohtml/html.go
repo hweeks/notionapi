@@ -1230,16 +1230,8 @@ func (c *Converter) RenderEmbed(block *notionapi.Block) {
 
 // RenderTable renders BlockTable
 func (c *Converter) RenderTable(block *notionapi.Block) {
-	c.Printf(`<div id="%s">`, block.ID)
-	{
-		c.Printf(`<div class="source">`)
-		{
-			uri := getFileOrSourceURL(block)
-			text := block.Source
-			c.A(uri, text, "")
-		}
-		c.Printf(`</div>`)
-	}
+	c.Printf(`<div id="%s" class="table-content">`, block.ID)
+	c.RenderChildren(block)
 	c.Printf(`</div>`)
 }
 

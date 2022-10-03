@@ -1242,9 +1242,11 @@ func (c *Converter) RenderTableRow(block *notionapi.Block) {
 	s := reflect.ValueOf(block.Properties)
 	iter := s.MapRange()
 	for iter.Next() {
-		k := iter.Key()
 		v := iter.Value()
-		c.Printf(`<div id="%s-key" class="table-row-content">%s</div><div id="%s-value" class="table-row-content">%s</div>`, k, k, v, v)
+		vS := fmt.Sprintf("%s", v)
+		vS = strings.Replace(vS, "[[", "", 1)
+		vS = strings.Replace(vS, "]]", "", 1)
+		c.Printf(`<div id="%s-value" class="table-row-content">%s</div>`, vS, vS)
 	}
 	c.Printf(`</div>`)
 }

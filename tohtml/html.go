@@ -1243,10 +1243,9 @@ func (c *Converter) RenderTableRow(block *notionapi.Block) {
 	iter := s.MapRange()
 	for iter.Next() {
 		v := iter.Value()
-		vS := fmt.Sprintf("%s", v)
-		vS = strings.Replace(vS, "[[", "", 1)
-		vS = strings.Replace(vS, "]]", "", 1)
-		c.Printf(`<div id="%s-value" class="table-row-content">%s</div>`, vS, vS)
+		y := v.Interface().([]interface{})
+		yS := y[0].([]interface{})
+		c.Printf(`<div id="%s-value" class="table-row-content">%s</div>`, yS[0], yS[0])
 	}
 	c.Printf(`</div>`)
 }
